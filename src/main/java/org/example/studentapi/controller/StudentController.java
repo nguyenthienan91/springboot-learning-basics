@@ -1,5 +1,6 @@
 package org.example.studentapi.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.example.studentapi.model.Student;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController     //đánh dấu spring boot sẽ biết đây là lớp chứa API
+@SecurityRequirement(name="api")
 public class StudentController {
 
     List<Student> students = new ArrayList<>();

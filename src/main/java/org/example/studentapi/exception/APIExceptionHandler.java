@@ -1,12 +1,15 @@
 package org.example.studentapi.exception;
 
 
+import org.example.studentapi.exception.exceptions.AuthenticationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@RestControllerAdvice
 public class APIExceptionHandler {
 
     // chạy mỗi khi mà dính lỗi
@@ -23,6 +26,11 @@ public class APIExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity handleCredentialsException(BadCredentialsException exception) {
         return ResponseEntity.status(401).body("Invalid username or password");
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity handleAuthentication(AuthenticationException exception){
+        return ResponseEntity.status(401).body(exception.getMessage());
     }
 
 }
