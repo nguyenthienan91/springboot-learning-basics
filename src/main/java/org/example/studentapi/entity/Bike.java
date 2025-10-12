@@ -19,4 +19,8 @@ public class Bike {
     @JoinColumn(name="account_id")
     @JsonIgnore
     Account account;
+
+    @ManyToOne
+            @JoinColumn(name="model_id")
+    Model model;
 }
